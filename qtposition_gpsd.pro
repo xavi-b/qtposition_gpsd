@@ -1,6 +1,11 @@
 TARGET = qtposition_gpsd
 QT = core network positioning
 
+unix {
+target.path = /usr/lib/qt/plugins/position/
+INSTALLS += target
+}
+
 TEMPLATE = lib
 CONFIG += plugin
 
