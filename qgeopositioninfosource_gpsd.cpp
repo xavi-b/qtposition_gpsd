@@ -30,39 +30,39 @@
 #include <QDebug>
 
 QGeoPositionInfoSourceGpsd::QGeoPositionInfoSourceGpsd(QObject *parent)
-        : QNmeaPositionInfoSource(QNmeaPositionInfoSource::RealTimeMode, parent)
-        , _device(0)
-        , _running(false)
+    : QNmeaPositionInfoSource(QNmeaPositionInfoSource::RealTimeMode, parent)
+    , _device(0)
+    , _running(false)
 {
-  qDebug() << "QGeoPositionInfoSourceGpsd";
-  _device = GpsdMasterDevice::instance()->createSlave();
-  setDevice(_device);
+    qDebug() << "QGeoPositionInfoSourceGpsd";
+    _device = GpsdMasterDevice::instance()->createSlave();
+    setDevice(_device);
 }
 
 QGeoPositionInfoSourceGpsd::~QGeoPositionInfoSourceGpsd()
 {
-  if(_running)
-      stopUpdates();
-  GpsdMasterDevice::instance()->destroySlave(_device);
-  _device = 0;
+    if(_running)
+        stopUpdates();
+    GpsdMasterDevice::instance()->destroySlave(_device);
+    _device = 0;
 }
 
 void QGeoPositionInfoSourceGpsd::startUpdates()
 {
-  if(!_running)
-  {
-    GpsdMasterDevice::instance()->unpauseSlave(_device);
-    QNmeaPositionInfoSource::startUpdates();
-    _running = true;
-  }
+    if(!_running)
+    {
+        GpsdMasterDevice::instance()->unpauseSlave(_device);
+        QNmeaPositionInfoSource::startUpdates();
+        _running = true;
+    }
 }
 
 void QGeoPositionInfoSourceGpsd::stopUpdates()
 {
-  if(_running)
-  {
-    QNmeaPositionInfoSource::stopUpdates();
-    GpsdMasterDevice::instance()->pauseSlave(_device);
-    _running = false;
-  }
+    if(_running)
+    {
+        QNmeaPositionInfoSource::stopUpdates();
+        GpsdMasterDevice::instance()->pauseSlave(_device);
+        _running = false;
+    }
 }

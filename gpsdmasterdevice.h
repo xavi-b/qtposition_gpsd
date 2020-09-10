@@ -35,36 +35,36 @@ class QTcpSocket;
 
 class GpsdMasterDevice : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  static GpsdMasterDevice* instance();
+    static GpsdMasterDevice* instance();
 
-  QIODevice* createSlave();
-  void destroySlave(QIODevice* slave);
-  void pauseSlave(QIODevice* slave);
-  void unpauseSlave(QIODevice* slave);
+    QIODevice* createSlave();
+    void destroySlave(QIODevice* slave);
+    void pauseSlave(QIODevice* slave);
+    void unpauseSlave(QIODevice* slave);
 
 private slots:
-  void readFromSocketAndCopy();
-  
-private:
-  GpsdMasterDevice();
-  bool gpsdConnect();
-  void gpsdDisconnect();
-  bool gpsdStart();
-  bool gpsdStop();
-  
-  typedef QList<QPair<QIODevice*,bool> > SlaveListT;
-  
-  SlaveListT _slaves;
-  QTcpSocket* _socket;
-  QString _hostname;
-  quint16 _port;
-  bool _gpsdStarted;
-  int _timeout;
+    void readFromSocketAndCopy();
 
-  static GpsdMasterDevice* _instance;
+private:
+    GpsdMasterDevice();
+    bool gpsdConnect();
+    void gpsdDisconnect();
+    bool gpsdStart();
+    bool gpsdStop();
+
+    typedef QList<QPair<QIODevice*,bool> > SlaveListT;
+
+    SlaveListT _slaves;
+    QTcpSocket* _socket;
+    QString _hostname;
+    quint16 _port;
+    bool _gpsdStarted;
+    int _timeout;
+
+    static GpsdMasterDevice* _instance;
 };
 
 #endif // GPSDMASTERDEVICE_H

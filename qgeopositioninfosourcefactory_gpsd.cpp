@@ -30,16 +30,16 @@
 
 QGeoPositionInfoSource *QGeoPositionInfoSourceFactoryGpsd::positionInfoSource(QObject *parent)
 {
-  return new QGeoPositionInfoSourceGpsd(parent);
+    return new QGeoPositionInfoSourceGpsd(parent);
 }
 
 QGeoSatelliteInfoSource *QGeoPositionInfoSourceFactoryGpsd::satelliteInfoSource(QObject *parent)
 {
-  return new QGeoSatelliteInfoSourceGpsd(parent);
+    return new QGeoSatelliteInfoSourceGpsd(parent);
 }
 
 QGeoAreaMonitorSource *QGeoPositionInfoSourceFactoryGpsd::areaMonitor(QObject *parent)
 {
-  Q_UNUSED(parent);
-  return 0;
+    Q_UNUSED(parent);
+    return 0;
 }
