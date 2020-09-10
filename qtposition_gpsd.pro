@@ -1,13 +1,8 @@
 TARGET = qtposition_gpsd
 QT = core network positioning
 
-unix:!contains(QT_ARCH, arm) {
-target.path = /usr/lib/qt/plugins/position/
-INSTALLS += target
-}
-
-unix:contains(QT_ARCH, arm) {
-target.path = /usr/lib/arm-linux-gnueabihf/qt5/plugins/position/
+unix {
+target.path = $$[QT_INSTALL_PLUGINS]/position/
 INSTALLS += target
 }
 
