@@ -27,11 +27,14 @@
 
 #include "gpsdmasterdevice.h"
 
+#include <QDebug>
+
 QGeoPositionInfoSourceGpsd::QGeoPositionInfoSourceGpsd(QObject *parent)
         : QNmeaPositionInfoSource(QNmeaPositionInfoSource::RealTimeMode, parent)
         , _device(0)
         , _running(false)
 {
+  qDebug() << "QGeoPositionInfoSourceGpsd";
   _device = GpsdMasterDevice::instance()->createSlave();
   setDevice(_device);
 }
